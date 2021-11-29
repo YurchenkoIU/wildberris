@@ -1,6 +1,23 @@
 const getGoods = () => {
     const links = document.querySelectorAll('.navigation-link')   
-    const allBtn = document.querySelector('.more') 
+    const allBtn = document.querySelector('.more')     
+
+    const addToCart = (cartItem) => {
+        const cartArray = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+        //console.log(cartArray.some((item) => item.id === cartItem.id))
+        if (cartArray.some((item) => item.id === cartItem.id)) {
+            cartArray.map((item) => {
+            if (item.id === cartItem.id) {
+                item.count++;
+            }
+            return item;
+            })
+        } else {           
+            cartArray.push(cartItem);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cartArray));
+    };
 
     const renderGoods = (goods) => {
         const goodsList = document.querySelector('.long-goods-list')
@@ -24,7 +41,13 @@ const getGoods = () => {
 					</button>
 				</div>`
 
-            goodsList.append(goodBlock)            
+            goodsList.append(goodBlock)    
+            
+            const addToCartBtn = goodBlock.querySelector('.add-to-cart')
+            addToCartBtn.addEventListener('click', (e) => {
+                console.log(addToCartBtn.textContent)
+                addToCart({label, img, description, name, id, price, count: 1})
+            })
         })
         
     }
@@ -43,8 +66,8 @@ const getGoods = () => {
 
             localStorage.setItem('goods',JSON.stringify(dataGoods))
         })
-    }
-    
+    }    
+
     links.forEach((link) => {
         link.addEventListener('click',(e) => {
             e.preventDefault()
@@ -59,21 +82,15 @@ const getGoods = () => {
 
     if (localStorage.getItem('goods') && window.location.pathname === '/goods.html') {
         renderGoods(JSON.parse(localStorage.getItem('goods')))
-    }
-
-    try {
+    }    
+    
+    if (allBtn) {
     allBtn.addEventListener('click', (e) => {
         e.preventDefault()
-
-            getData()   
+        
+            getData()         
         }
-    )}
-    catch(error) {
-            console.log(error.message)
-        }  
-    
-    //localStorage.setItem('goods',JSON.stringify([1,2,3,4,5]))
-    //console.log(JSON.parse(localStorage.getItem('goods')))
+    )}   
 }
 
 getGoods()

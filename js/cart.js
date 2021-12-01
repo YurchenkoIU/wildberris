@@ -4,8 +4,8 @@ const cart = () => {
     const closeBtn = cart.querySelector('.modal-close')
     const cartTableGoods = document.querySelector('.cart-table__goods')
     const cardTableTotal = document.querySelector('.card-table__total')
-
-    console.log(cartTableGoods)
+    const inputs = document.querySelectorAll('.modal-input')
+    const checkoutBtn = cart.querySelector('.cart-buy')
 
     const incrementCount = (id) => {
         const cartArray = JSON.parse(localStorage.getItem('cart'))
@@ -96,7 +96,7 @@ const cart = () => {
     });
 
     cart.addEventListener('click', (e) => {
-        e.preventDefault;
+        e.preventDefault();
 
         if (e.target.classList.contains ('cart-btn-plus')) {
             incrementCount(e.target.dataset.index);
@@ -111,6 +111,42 @@ const cart = () => {
         //modalPricetag.textContent = summCount();
     })
 
+    
+    checkoutBtn.addEventListener('click',(e) => {
+        e.preventDefault()
+
+        const customer = {
+            nameCust: '',
+            phoneCust: '',
+        }
+        /*if (inputLogin.value.trim() == '') {
+            const message = alert('Необходимо ввести логин!')
+        } else {
+            const user = {
+                login: inputLogin.value,
+                password: inputPassword.value,
+            }
+            
+            localStorage.setItem('user',JSON.stringify(user));
+            login(user);  
+    }  */
+        inputs.forEach((input) => {
+            if (input.name === 'nameCustomer') {
+                customer.nameCust = input.value                
+            }
+            if (input.name === 'phoneCustomer') {
+                customer.phoneCust = input.value
+            }            
+        })
+
+        if (customer.nameCust & customer.phoneCust) {
+            console.log(customer.nameCust + customer.phoneCust)
+            localStorage.setItem('user',JSON.stringify(customer));
+        } else {
+            const message = alert('Необходимо ввести логин!')
+        }
+    
+    })
 
 } 
 

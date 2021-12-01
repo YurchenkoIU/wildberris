@@ -20,6 +20,7 @@
 	<script src="js/cart.js" defer></script>
 	<script src="js/search.js" defer></script>
 	<script src="js/getGoods.js" defer></script>
+	<script type="module" src="./js/slider.js" defer></script>
 </head>
 <!-- class="show-goods" -->
 
@@ -75,7 +76,7 @@
 		</div>
 		<!-- /.row -->
 	</header>
-	<section class="slider swiper-container">
+	<section class="slider swiper-container swiper">
 		<div class="swiper-wrapper">
 			<section class="slide slide-1 swiper-slide">
 				<div class="container">
@@ -96,7 +97,7 @@
 				</div>
 				<!-- /.container -->
 			</section>
-			<section class="slide slide-1 swiper-slide">
+			<section class="slide slide-2 swiper-slide">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-4 col-10 offset-lg-1">
@@ -115,7 +116,7 @@
 				</div>
 				<!-- /.container -->
 			</section>
-			<section class="slide slide-1 swiper-slide">
+			<section class="slide slide-3 swiper-slide">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-4 col-10 offset-lg-1">
@@ -135,18 +136,21 @@
 				<!-- /.container -->
 			</section>
 		</div>
+		<!--<div class="swiper-button-next"></div>
+      	<div class="swiper-button-prev"></div>-->
+      	<div class="swiper-pagination"></div>
 		<!-- /.swiper-wrapper -->
 		<div class="slider-nav">
 			<div class="container">
 				<div class="row justify-content-between">
 					<div class="col-1">
-						<button class="slider-button slider-button-prev">
+						<button class="slider-button slider-button-prev swiper-button-prev">
 							<img src="img/arrow-prev.svg" alt="icon: arrow-prev">
 						</button>
 					</div>
 					<!-- /.col-1 -->
 					<div class="col-1">
-						<button class="slider-button slider-button-next">
+						<button class="slider-button slider-button-next swiper-button-next">
 							<img src="img/arrow-next.svg" alt="icon: arrow-prev">
 						</button>
 					</div>
